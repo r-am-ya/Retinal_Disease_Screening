@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071f2e" />
+    <title>RetinaScope | Research screening aid</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar"><a class="brand" href="#top">RETINA<span>SCOPE</span></a><nav><a href="#screen">Screen</a><a href="#evidence">Evidence</a><a href="#methods">Methods</a></nav><span class="tag">Research build</span></header>
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">FUNDUS IMAGE SCREENING &middot; 9 CLASSES</p>
+        <h1>One calm place for <em>screening</em> and model evidence.</h1>
+        <p class="intro">Upload a retinal fundus image for analysis with the same preprocessing used in training, then inspect the data split, learning curves, per-class metrics, confusion matrix and study limitations.</p>
+        <div class="notice"><b>For research and screening support only.</b> This application is not a medical device and does not diagnose disease. Clinical decisions require a qualified ophthalmologist.</div>
+      </section>
+
+      <section class="screen-grid" id="screen">
+        <article class="panel upload-panel">
+          <p class="section-kicker">01 / SCREEN AN IMAGE</p>
+          <h2>Upload fundus image</h2>
+          <label class="dropzone" id="dropzone" for="image-input"><input id="image-input" type="file" accept="image/jpeg,image/png" /><span class="upload-icon">&uarr;</span><strong>Drop an image here</strong><small>or choose JPEG / PNG &middot; resized in your browser before upload</small></label>
+          <div id="preview-wrap" class="preview-wrap hidden"><img id="preview" alt="Selected retinal fundus image" /><button id="clear-image" type="button">Remove</button></div>
+          <button id="analyze" class="primary" disabled>Analyze image <span>&rarr;</span></button>
+          <p id="model-status" class="status">Loading&hellip;</p>
+        </article>
+        <article class="panel result-panel">
+          <p class="section-kicker">02 / RESULT</p>
+          <div id="empty-result" class="empty"><div class="empty-ring"></div><h2>Awaiting image</h2><p>The image is sent securely to the analysis function and is not saved by this application.</p></div>
+          <div id="result" class="hidden">
+            <div class="result-head"><div><span class="muted">Top screening signal</span><h2 id="top-class">&mdash;</h2></div><div class="score"><b id="top-score">&mdash;</b><small>confidence</small></div></div>
+            <div id="referral" class="referral hidden"></div>
+            <div><div class="bar-label"><span>Differential signals</span><span>Probability</span></div><div id="predictions"></div></div>
+            <div class="quality"><div><span>Image quality</span><b id="quality-value">&mdash;</b></div><p id="quality-note">&mdash;</p></div>
+            <p class="result-foot">A low-confidence output is not evidence of absence. Review image quality and obtain clinical assessment as appropriate.</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="evidence" class="evidence">
+        <div class="section-title"><p class="section-kicker">03 / PERFORMANCE EVIDENCE</p><h2>Training and test results</h2><p>All numbers come from a single evaluation of the held-out test split with the final checkpoint. Nothing was tuned on it.</p></div>
+        <div class="metric-grid">
+          <article class="metric-card accent"><span>TEST MACRO F1</span><strong id="macro-f1">&mdash;</strong><small>unweighted across classes</small></article>
+          <article class="metric-card"><span>TEST WEIGHTED F1</span><strong id="weighted-f1">&mdash;</strong><small>weighted by class size</small></article>
+          <article class="metric-card"><span>TEST ACCURACY</span><strong id="accuracy">&mdash;</strong><small>on held-out images</small></article>
+          <article class="metric-card"><span>TEST SAMPLES</span><strong id="test-total">&mdash;</strong><small>never used for training</small></article>
+        </div>
+        <div class="charts">
+          <article class="panel chart-panel"><div class="chart-head"><div><p class="section-kicker">OPTIMIZATION</p><h3>Macro-F1 per epoch</h3></div><div class="legend"><i></i> Train <i class="val"></i> Validation</div></div><svg id="curves" viewBox="0 0 640 260" role="img" aria-label="Training and validation macro-F1 per epoch"></svg></article>
+          <article class="panel chart-panel"><div class="chart-head"><div><p class="section-kicker">OPTIMIZATION</p><h3>Loss per epoch</h3></div><div class="legend"><i></i> Train <i class="val"></i> Validation</div></div><svg id="loss-curves" viewBox="0 0 640 260" role="img" aria-label="Training and validation loss per epoch"></svg></article>
+        </div>
+        <div class="charts">
+          <article class="panel chart-panel"><div class="chart-head"><div><p class="section-kicker">HELD-OUT SET</p><h3>F1 by class</h3></div><span class="muted">test split</span></div><div id="f1-bars" class="f1-bars"></div></article>
+          <article class="panel chart-panel"><div class="chart-head"><div><p class="section-kicker">DATA SPLIT</p><h3>Images per class</h3></div><div class="legend"><i class="seg-train"></i> Train <i class="seg-val"></i> Val <i class="seg-test"></i> Test</div></div><div id="split-bars"></div></article>
+        </div>
+        <article class="panel chart-panel wide"><div class="chart-head"><div><p class="section-kicker">HELD-OUT SET</p><h3>Per-class precision, recall, F1 and AUC</h3></div><span class="muted">classes with few test images are flagged</span></div><div class="table-wrap"><table class="data-table" id="class-table"></table></div></article>
+        <article class="panel chart-panel wide"><div class="chart-head"><div><p class="section-kicker">HELD-OUT SET</p><h3>Confusion matrix</h3></div><span class="muted">rows = true class, columns = predicted; shading = share of the true class</span></div><div class="table-wrap"><table class="cm" id="cm-table"></table></div><div id="cm-legend" class="cm-legend"></div></article>
+      </section>
+
+      <section id="methods" class="methods">
+        <div class="section-title"><p class="section-kicker">04 / STUDY DESIGN</p><h2>What was trained, and how?</h2></div>
+        <div class="method-grid">
+          <article><span>DATASET</span><b id="m-dataset">&mdash;</b><p>Sharmin et al. 2024 (Data in Brief 57, 110979), nine fundus classes. The external-eye pterygium class was excluded. Augmented image files were not used because they could not be reliably linked back to their source images, which would risk leakage.</p></article>
+          <article><span>SPLIT</span><b id="m-split">&mdash;</b><p>Stratified by class with seed 42. Exact perceptual-hash duplicate clusters stayed in one partition. Validation and test contain original images only.</p></article>
+          <article><span>MODEL</span><b id="m-model">&mdash;</b><p id="m-model-note">&mdash;</p></article>
+          <article><span>LIMITATIONS</span><b>Not patient-level</b><p>Patient IDs were unavailable, so patient-level leakage cannot be excluded. Data come from two hospitals in one country, rare classes have very few test images, and no external validation has been done. Not for clinical use.</p></article>
+        </div>
+        <details><summary>Classes included</summary><p>Central serous chorioretinopathy, diabetic retinopathy, disc edema, glaucoma, healthy, macular scar, myopia, retinal detachment and retinitis pigmentosa.</p></details>
+      </section>
+    </main>
+    <footer>RETINASCOPE &middot; RESEARCH SCREENING AID &middot; <span>NOT A MEDICAL DEVICE</span></footer>
+    <script src="/app.js"></script>
+  </body>
+</html>

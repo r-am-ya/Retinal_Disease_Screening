@@ -1,0 +1,318 @@
+{
+  "model": {
+    "architecture": "mobilenetv3_large_100",
+    "image_size": 192,
+    "best_val_f1": 0.6354103988013212
+  },
+  "metrics": {
+    "macro_f1": 0.6218087784349277,
+    "weighted_f1": 0.6854727577198981,
+    "accuracy": 0.6796482412060302,
+    "test_samples": 796
+  },
+  "per_class": [
+    {
+      "class": "central_serous_chorioretinopathy",
+      "precision": 0.2857142857142857,
+      "recall": 0.4,
+      "f1": 0.3333333333333333,
+      "auc": 0.8485702091335895,
+      "support": 15
+    },
+    {
+      "class": "diabetic_retinopathy",
+      "precision": 0.9597701149425287,
+      "recall": 0.7389380530973452,
+      "f1": 0.835,
+      "auc": 0.9609804378202143,
+      "support": 226
+    },
+    {
+      "class": "disc_edema",
+      "precision": 0.4186046511627907,
+      "recall": 0.9473684210526315,
+      "f1": 0.5806451612903226,
+      "auc": 0.9912280701754387,
+      "support": 19
+    },
+    {
+      "class": "glaucoma",
+      "precision": 0.7388059701492538,
+      "recall": 0.4900990099009901,
+      "f1": 0.5892857142857143,
+      "auc": 0.8794087742107545,
+      "support": 202
+    },
+    {
+      "class": "healthy",
+      "precision": 0.6745562130177515,
+      "recall": 0.7450980392156863,
+      "f1": 0.7080745341614907,
+      "auc": 0.9106770753921061,
+      "support": 153
+    },
+    {
+      "class": "macular_scar",
+      "precision": 0.5675675675675675,
+      "recall": 0.6363636363636364,
+      "f1": 0.6,
+      "auc": 0.8786322125363222,
+      "support": 66
+    },
+    {
+      "class": "myopia",
+      "precision": 0.5428571428571428,
+      "recall": 0.76,
+      "f1": 0.6333333333333333,
+      "auc": 0.9416920943134536,
+      "support": 75
+    },
+    {
+      "class": "retinal_detachment",
+      "precision": 0.4418604651162791,
+      "recall": 1.0,
+      "f1": 0.6129032258064516,
+      "auc": 0.9972905236063131,
+      "support": 19
+    },
+    {
+      "class": "retinitis_pigmentosa",
+      "precision": 0.5757575757575758,
+      "recall": 0.9047619047619048,
+      "f1": 0.7037037037037037,
+      "auc": 0.9927188940092166,
+      "support": 21
+    }
+  ],
+  "confusion_matrix": {
+    "labels": [
+      "central_serous_chorioretinopathy",
+      "diabetic_retinopathy",
+      "disc_edema",
+      "glaucoma",
+      "healthy",
+      "macular_scar",
+      "myopia",
+      "retinal_detachment",
+      "retinitis_pigmentosa"
+    ],
+    "counts": [
+      [
+        6,
+        0,
+        1,
+        1,
+        1,
+        4,
+        0,
+        1,
+        1
+      ],
+      [
+        6,
+        167,
+        11,
+        3,
+        3,
+        9,
+        7,
+        15,
+        5
+      ],
+      [
+        0,
+        0,
+        18,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        3,
+        1,
+        5,
+        99,
+        41,
+        11,
+        31,
+        5,
+        6
+      ],
+      [
+        3,
+        0,
+        5,
+        20,
+        114,
+        5,
+        4,
+        2,
+        0
+      ],
+      [
+        3,
+        5,
+        3,
+        1,
+        4,
+        42,
+        5,
+        1,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        10,
+        6,
+        2,
+        57,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        19,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        19
+      ]
+    ]
+  },
+  "split_counts": {
+    "train": {
+      "central_serous_chorioretinopathy": 71,
+      "diabetic_retinopathy": 1056,
+      "disc_edema": 89,
+      "glaucoma": 944,
+      "healthy": 717,
+      "macular_scar": 311,
+      "myopia": 350,
+      "retinal_detachment": 87,
+      "retinitis_pigmentosa": 97
+    },
+    "val": {
+      "central_serous_chorioretinopathy": 15,
+      "diabetic_retinopathy": 227,
+      "disc_edema": 19,
+      "glaucoma": 203,
+      "healthy": 154,
+      "macular_scar": 67,
+      "myopia": 75,
+      "retinal_detachment": 19,
+      "retinitis_pigmentosa": 21
+    },
+    "test": {
+      "central_serous_chorioretinopathy": 15,
+      "diabetic_retinopathy": 226,
+      "disc_edema": 19,
+      "glaucoma": 202,
+      "healthy": 153,
+      "macular_scar": 66,
+      "myopia": 75,
+      "retinal_detachment": 19,
+      "retinitis_pigmentosa": 21
+    }
+  },
+  "history": [
+    {
+      "phase": "head",
+      "epoch": 1.0,
+      "train_loss": 3.014023721890703,
+      "train_acc": 0.34685652874798495,
+      "train_f1": 0.3041104781452215,
+      "val_loss": 3.1235939300060274,
+      "val_acc": 0.43,
+      "val_f1": 0.3775292765484451
+    },
+    {
+      "phase": "head",
+      "epoch": 2.0,
+      "train_loss": 2.3280406034101664,
+      "train_acc": 0.42987641053197206,
+      "train_f1": 0.3800299012878053,
+      "val_loss": 2.810133401155472,
+      "val_acc": 0.51875,
+      "val_f1": 0.4493430003086696
+    },
+    {
+      "phase": "finetune",
+      "epoch": 1.0,
+      "train_loss": 1.8088379404610169,
+      "train_acc": 0.5779150994089199,
+      "train_f1": 0.5278546004125197,
+      "val_loss": 2.573353556394577,
+      "val_acc": 0.58375,
+      "val_f1": 0.539918976455696
+    },
+    {
+      "phase": "finetune",
+      "epoch": 2.0,
+      "train_loss": 1.6929240096070188,
+      "train_acc": 0.6440085975282106,
+      "train_f1": 0.5950056860044965,
+      "val_loss": 2.4294323647022247,
+      "val_acc": 0.64875,
+      "val_f1": 0.6137752879654373
+    },
+    {
+      "phase": "finetune",
+      "epoch": 3.0,
+      "train_loss": 1.594284684602962,
+      "train_acc": 0.6963997850617948,
+      "train_f1": 0.661145355445377,
+      "val_loss": 2.432790085077286,
+      "val_acc": 0.64875,
+      "val_f1": 0.5957789453863389
+    },
+    {
+      "phase": "finetune",
+      "epoch": 4.0,
+      "train_loss": 1.534810870005071,
+      "train_acc": 0.7130574959699086,
+      "train_f1": 0.6785233812498712,
+      "val_loss": 2.3671229815483095,
+      "val_acc": 0.66875,
+      "val_f1": 0.6260200991639109
+    },
+    {
+      "phase": "finetune",
+      "epoch": 5.0,
+      "train_loss": 1.4808022914427317,
+      "train_acc": 0.7471789360558839,
+      "train_f1": 0.7158766885482241,
+      "val_loss": 2.360137960910797,
+      "val_acc": 0.68,
+      "val_f1": 0.6253944009910222
+    },
+    {
+      "phase": "finetune",
+      "epoch": 6.0,
+      "train_loss": 1.4846472172632068,
+      "train_acc": 0.7471789360558839,
+      "train_f1": 0.7181864055472106,
+      "val_loss": 2.3559986186027526,
+      "val_acc": 0.68625,
+      "val_f1": 0.6354103988013212
+    }
+  ]
+}

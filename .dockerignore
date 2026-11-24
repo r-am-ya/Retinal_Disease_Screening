@@ -1,0 +1,10 @@
+.git
+.venv
+data
+*.zip
+models/*.pt
+models/*.onnx
+reports/training_log.csv
+__pycache__
+.pytest_cache
+

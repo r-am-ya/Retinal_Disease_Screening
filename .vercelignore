@@ -1,0 +1,14 @@
+.venv/
+data/
+notebooks/
+reports/
+tests/
+src/
+configs/
+*.zip
+*.tar
+models/
+requirements-train.txt
+.git/
+__pycache__/
+*.pt

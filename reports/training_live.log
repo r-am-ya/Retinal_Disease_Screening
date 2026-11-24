@@ -1,0 +1,6 @@
+Training baseline_cnn on cpu (fast=False)...
+[baseline_cnn | FT 1/12] train_loss=2.4777 val_loss=3.0025 val_acc=0.1212 val_f1=0.1039
+[baseline_cnn | FT 2/12] train_loss=2.4031 val_loss=2.8518 val_acc=0.2487 val_f1=0.1815
+[baseline_cnn | FT 3/12] train_loss=2.3911 val_loss=2.7889 val_acc=0.3412 val_f1=0.2450
+[baseline_cnn | FT 4/12] train_loss=2.3456 val_loss=2.7848 val_acc=0.3162 val_f1=0.2469
+[baseline_cnn | FT 5/12] train_loss=2.3129 val_loss=2.8103 val_acc=0.3000 val_f1=0.2313

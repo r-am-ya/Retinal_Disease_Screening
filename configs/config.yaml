@@ -1,0 +1,24 @@
+seed: 42
+data:
+  split_dir: data/splits
+  image_size: 192
+  clahe: true
+  green_channel: false
+model:
+  architecture: efficientnet_b0
+  pretrained: true
+training:
+  batch_size: 16
+  workers: 2
+  epochs_head: 2
+  epochs_finetune: 6
+  lr_head: 0.001
+  lr_finetune: 0.0001
+  weight_decay: 0.0001
+  label_smoothing: 0.1
+  patience: 3
+  class_weighted_loss: true
+inference:
+  confidence_threshold: 0.60
+  high_risk_threshold: 0.35
+
